@@ -38,4 +38,12 @@ describe Matriz do
     (@m.new(2, 2, 1, 0, 0, 1) * @m.new(2, 2, -1)).should_not == @m.new(2, 2, 2)
   end
 
+  it "Se debe poder multiplicar dos matrices de Racionales" do
+    lambda { @m.new(2, 3, @fr.new(1, 2)) * @m.new(2, 3, @fr.new(3, 2))}.should raise_error(IndexError)
+    lambda { @m.new(-1, 3, @fr.new(-1, 2)) * @m.new(3, 3, @fr.new(5, 2))}.should raise_error(IndexError)
+    (@m.new(1, 2, @fr.new(-1, 3)) * @m.new(2, 1, @fr.new(2, 2))).should == @m.new(1, 1, @fr.new(-2, 3))
+    (@m.new(2, 2, @fr.new(1, 1), @fr.new(0, 1), @fr.new(0, 1), @fr.new(1, 1)) * @m.new(2, 2, @fr.new(1, 49))).should == @m.new(2, 2, @fr.new(1, 49))
+    (@m.new(2, 2, @fr.new(1, 2)) * @m.new(2, 2, @fr.new(1, 3))).should == @m.new(2, 2, @fr.new(1, 3))
+  end
+
 end
