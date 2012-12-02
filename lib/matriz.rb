@@ -41,7 +41,7 @@ class Matriz
 		@datos[i]
 	end
 
-	def == (m) # 
+	def == (m) # Se hizo necesario para que funcionase el spec
 		raise IndexError unless ((self.fil == m.fil) && (self.col == m.col))
 
 		igual = true
