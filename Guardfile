@@ -1,6 +1,7 @@
 # More info at https://github.com/guard/guard#readme
 # Este archivo fue creado haciendo: guard init, 
 # siguiendo los pasos del link
+# guard --debug
 
 guard 'bundler' do
   watch('Gemfile')
