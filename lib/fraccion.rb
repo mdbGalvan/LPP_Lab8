@@ -27,16 +27,16 @@ class Fraccion
   def mcm(a, b)
 	  # Por el Alg. de Euclides, a través del mcd
 	  (a * b)/mcd(a, b)
- 	end
+  end
 
  	#----------------------------------------------------------------------
  	# Convertidor: a string o a float
  	#----------------------------------------------------------------------
 
-	def to_s
+  def to_s
     "#{self.class} #{@num}/#{@den}"
   end
-  
+
   def to_f
     @num/@den
   end
@@ -46,10 +46,10 @@ class Fraccion
  	# Operadores
  	#----------------------------------------------------------------------
 
-	def == (fr)
+  def == (fr)
     ((self.num == fr.num) && (self.den == fr.den))
   end
-  
+
   def abs
     Fraccion.new(@num.abs, @den)
   end
