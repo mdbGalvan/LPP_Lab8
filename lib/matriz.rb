@@ -10,12 +10,12 @@ class Matriz
 		raise IndexError unless ((args[0] > 0) && (args[1] > 0)) # Error, si dimensión <0
 		@fil = args[0]
 		@col = args[1]
-		@datos = Array.new(@fil, Array.new(@col, 0)) if (args.size == 2) # Datos inicializados a 0
-		@datos = Array.new(@fil, Array.new(@col, args[2])) if (args.size == 3) # Datos inicializados al 3 argumento
+		@datos = Array.new(@fil) {Array.new(@col) {0}} if (args.size == 2) # Datos inicializados a 0
+		@datos = Array.new(@fil) {Array.new(@col) {args[2]}} if (args.size == 3) # Datos inicializados al 3 argumento
 		if (args.size > 3)
 			tam = @fil * @col # Número de elementos, tam
 			raise IndexError unless (args.size == tam + 2) # Si hay tantos elementos para llenar la matriz
-			@datos = Array.new(@fil, Array.new(@col, 0))
+			@datos = Array.new(@fil) {Array.new(@col) {0}}
 			for i in (0...self.fil)
 				for j in (0...self.col)
 					self[i][j] = args[i*@col+j+2]
@@ -33,6 +33,7 @@ class Matriz
 			end
 				cadena << "|\n"
 		end
+
 		return cadena
 	end
 
@@ -42,25 +43,47 @@ class Matriz
 
 	def == (m) # 
 		raise IndexError unless ((self.fil == m.fil) && (self.col == m.col))
+
 		igual = true
 		for i in (0...self.fil)
 			for j in (0...self.col)
 				igual = false if (self[i][j] != m[i][j])
 			end
-		end 		
+		end 	
+
 		return igual
 	end
 
 	def + (m)
 		raise IndexError unless ((self.fil == m.fil) && (self.col == m.col))
+
 		suma = Matriz.new(self.fil, self.col)
+
 		for i in (0...self.fil)
 			for j in (0...self.col)
 				suma[i][j] = self[i][j] + m[i][j]
 			end
 		end  
+
 		return suma		
 	end
 
+	def * (b)
+		raise IndexError unless (self.col == b.fil) # A(m,n) x B(n,p) = C(m,p)
+
+		c = Matriz.new(self.fil, b.col)
+
+		for i in (0...self.fil) # sum (i,k,j) a(i,k)*b(k,j) = c(i,j)
+			for j in (0...b.col)
+				sum = self[i][0]*b[0][j]
+				for k in (1...self.col)
+					sum += self[i][k] * b[k][j]
+				end
+				c[i][j] = sum
+			end
+		end  
+
+		return c	
+	end
 
 end
