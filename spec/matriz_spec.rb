@@ -6,6 +6,7 @@ describe Matriz do
   
   before :each do
     @m = Matriz
+    @fr = Fraccion
   end
 
   it "Argumentos de la matriz bien definidos" do
@@ -16,9 +17,17 @@ describe Matriz do
 
   it "Se debe poder sumar dos matrices de enteros" do
   	lambda { @m.new(2, 3, 1) + @m.new(3, 2, 1)}.should raise_error(IndexError)
-  	(@m.new(2, 3, 1) + @m.new(2, 3, 2)).should == @m.new(2, 3, 3)
+  	(@m.new(2, 3, 1) + @m.new(2, 3, -2)).should == @m.new(2, 3, -1)
   	(@m.new(2, 3, 1) + @m.new(2, 3, 1)).should_not == @m.new(2, 3, 3)
   	(@m.new(2, 3, 1) + @m.new(2, 3, 1) + @m.new(2, 3, 1)).should == @m.new(2, 3, 3)
+  end
+
+  it "Se debe poder sumar dos matrices de racionales" do
+  	lambda { @m.new(2, 3, @fr.new(1, 2)) + @m.new(3, 2, @fr.new(1, 2))}.should raise_error(IndexError)
+  	(@m.new(2, 3, @fr.new(1, 2)) + @m.new(2, 3, @fr.new(1, 2))).should == @m.new(2, 3, @fr.new(1, 1))
+    (@m.new(2, 3, @fr.new(-1, 2)) + @m.new(2, 3, @fr.new(2, 4))).should == @m.new(2, 3, @fr.new(0, 1))
+  	(@m.new(2, 3, @fr.new(1, 2)) + @m.new(2, 3, @fr.new(1, 2))).should_not == @m.new(2, 3, @fr.new(3, 2))
+  	(@m.new(2, 3, @fr.new(1, 2)) + @m.new(2, 3, @fr.new(1, 2)) + @m.new(2, 3, @fr.new(1, 2))).should == @m.new(2, 3, @fr.new(3, 2))
   end
 
 end
