@@ -1,8 +1,8 @@
 ***  
-**Autora:**     *María D. Batista Galván*  
-**Fecha:**      *Lunes 3 de Diciembre de 2012*  
-**Asignatura:** *Lenguajes y Paradigmas de la Programación.*  
-**Práctica:**   **Laboratorio 8 :**  *Comprobación Continua (Continous Testing)*  
+>**Autora:**     *María D. Batista Galván*  
+>**Fecha:**      *Lunes 3 de Diciembre de 2012*  
+>**Asignatura:** *Lenguajes y Paradigmas de la Programación.*  
+>**Práctica:**   **Laboratorio 8 :**  *Comprobación Continua (Continous Testing)*  
 ***  
 
 ##Pasos
